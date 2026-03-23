@@ -40,8 +40,8 @@ exports.getUserByCourse=(req,res)=> {
 //Create a new User
 //crud - create
 exports.createUser=(req,res)=> {
-    const {fname, lname, age, course, gender, year} = req.body;
-    connection.query('INSERT INTO userdata (first_name, last_name, age, course, gender, year) VALUES (?,?,?,?,?,?)',[fname, lname, age, course, gender, year], (err,result)=> {
+    const {fname, lname, course, year} = req.body;
+    connection.query('INSERT INTO userdata (first_name, last_name, course, year) VALUES (?,?,?,?)',[fname, lname, course, year], (err,result)=> {
         if(err) throw err;
         res.json({message:'User Created Successfully', userId:
         result.insertId});
@@ -50,10 +50,10 @@ exports.createUser=(req,res)=> {
 
 
 //update
-//crud -update
+
 exports.updateUser=(req,res)=>{
-    const {id, fname, lname, age, course, gender, year} = req.body;
-    connection.query('UPDATE  userdata SET first_name=?, last_name=?, age=?, course=?, gender=?, year=? WHERE id=?', [fname, lname, age, course, gender, year, id], (err,result) => {
+    const {id, fname, lname, course, year} = req.body;
+    connection.query('UPDATE  userdata SET first_name=?, last_name=?, course=?, year=? WHERE id=?', [fname, lname, course, year,id], (err,result) => {
         if (err) throw err;
         if(result.affectedRows>0)
             res.json({message:'User Update Succesfully'});
@@ -62,14 +62,10 @@ exports.updateUser=(req,res)=>{
     });
 };
 
-
 //delete
-//crud-delete
-
 
 exports.deleteUser=(req,res)=>{
     const {id}  = req.body;
-
     connection.query('DELETE FROM userdata WHERE id=?', [id], (err,result) => {
         if (err) throw err;
         if(result.affectedRows>0)
