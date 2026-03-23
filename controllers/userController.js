@@ -41,7 +41,7 @@ exports.getUserByCourse=(req,res)=> {
 //crud - create
 exports.createUser=(req,res)=> {
     const {fname, lname, course, year} = req.body;
-    connection.query('INSERT INTO userdata (first_name, last_name, course, year) VALUES (?,?,?,?)',[fname, lname, course, year], (err,result)=> {
+    connection.query('INSERT INTO userdata (fname, lname, course, year) VALUES (?,?,?,?)',[fname, lname, course, year], (err,result)=> {
         if(err) throw err;
         res.json({message:'User Created Successfully', userId:
         result.insertId});
@@ -53,7 +53,7 @@ exports.createUser=(req,res)=> {
 
 exports.updateUser=(req,res)=>{
     const {id, fname, lname, course, year} = req.body;
-    connection.query('UPDATE  userdata SET first_name=?, last_name=?, course=?, year=? WHERE id=?', [fname, lname, course, year,id], (err,result) => {
+    connection.query('UPDATE  userdata SET fname=?, lname=?, course=?, year=? WHERE id=?', [fname, lname, course, year,id], (err,result) => {
         if (err) throw err;
         if(result.affectedRows>0)
             res.json({message:'User Update Succesfully'});
