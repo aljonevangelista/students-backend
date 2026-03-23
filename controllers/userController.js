@@ -1,6 +1,6 @@
 const connection = require('../config/db.js');
 
-// ✅ GET ALL USERS
+// GET ALL USERS
 exports.getAllUsers = (req, res) => {
     connection.query('SELECT * FROM userdata', (err, rows) => {
         if (err) {
@@ -11,7 +11,7 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
-// ✅ GET USER BY ID
+// GET USER BY ID
 exports.getUserById = (req, res) => {
     const id = req.params.id;
 
@@ -29,7 +29,7 @@ exports.getUserById = (req, res) => {
     });
 };
 
-// ✅ GET USER BY COURSE
+// GET USER BY COURSE
 exports.getUserByCourse = (req, res) => {
     const course = req.params.course;
 
@@ -47,7 +47,7 @@ exports.getUserByCourse = (req, res) => {
     });
 };
 
-// ✅ CREATE USER
+// CREATE USER
 exports.createUser = (req, res) => {
     const { fname, lname, course, year } = req.body;
 
@@ -73,7 +73,7 @@ exports.createUser = (req, res) => {
     );
 };
 
-// ✅ UPDATE USER
+// UPDATE USER
 exports.updateUser = (req, res) => {
     const { id, fname, lname, course, year } = req.body;
 
@@ -99,7 +99,7 @@ exports.updateUser = (req, res) => {
     );
 };
 
-// ✅ DELETE USER
+// DELETE USER
 exports.deleteUser = (req, res) => {
     const { id } = req.body;
 
